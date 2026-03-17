@@ -8,7 +8,7 @@
 아래 4명의 개인 폴더를 사용합니다.
 
 - hmooko
-- Postpark
+- jh0131
 - YouNoya
 - dlwhdgus0323
 
@@ -32,7 +32,7 @@
 예시
 
 - hmooko/week03
-- Postpark/week05
+- jh0131/week05
 - YouNoya/week01
 - dlwhdgus0323/week10
 
@@ -82,7 +82,7 @@
 예시
 
 - mission/week03-hmooko
-- practice/week05-Postpark
+- practice/week05-jh0131
 
 브랜치 생성 방법 (예시)
 
@@ -107,7 +107,7 @@ git checkout -b practice/week03-hmooko
 예시
 
 - hmooko/week04
-- Postpark/week04
+- jh0131/week04
 
 공통 규칙
 
