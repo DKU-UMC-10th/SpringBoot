@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    // Swagger/OpenAPI dependencies.  These libraries integrate with Spring MVC
+    // to automatically generate API documentation and provide a web UI at
+    // /swagger-ui/index.html.  See the 4주차 workbook for details on how
+    // Swagger simplifies API testing and documentation.  Version 3.0.1 is
+    // stable for Spring Boot 3.x.  If your project requires a different
+    // version, adjust these coordinates accordingly.
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.1'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:3.0.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
