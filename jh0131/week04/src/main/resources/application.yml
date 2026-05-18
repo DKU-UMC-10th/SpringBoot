@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    # In‑memory H2 database configuration.  For development you can leave the
+    # username and password blank.  When switching to MySQL simply replace
+    # the URL, driver‑class‑name, username and password with your own values
+    # (possibly sourced from environment variables as described in the workbook).
+    url: jdbc:h2:mem:missiondb;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+logging:
+  level:
+    root: INFO
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    path: /api-docs

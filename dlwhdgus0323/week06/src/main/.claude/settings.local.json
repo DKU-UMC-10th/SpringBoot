@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gradlew.bat compileJava)",
+      "Read(//mnt/c/Users/suyea/Desktop/Jonghyeon/UMC_10th_Spring_종현/dlwhdgus0323/**)",
+      "Bash(./gradlew compileJava)",
+      "WebFetch(domain:www.notion.so)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\suyea\\\\Desktop\\\\Jonghyeon\\\\UMC_10th_Spring_종현\\\\dlwhdgus0323\\\\week06\\\\src\\\\main\\\\java\\\\com\\\\example\\\\umc10th\" -Recurse -Include \"*.java\")",
+      "Bash(Select-Object FullName)",
+      "Bash(dir \"C:\\\\Users\\\\suyea\\\\.gradle\\\\caches\" /b /s)",
+      "Bash(findstr \"mysql-connector\")",
+      "Bash(mysql *)"
+    ]
+  }
+}
