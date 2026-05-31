@@ -1,13 +1,21 @@
 package com.example.umc10th.domain.member.controller;
 
+import com.example.umc10th.domain.member.dto.request.MemberReqDTO;
+import com.example.umc10th.domain.member.dto.response.MemberResDTO;
+import com.example.umc10th.domain.member.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class LoginController {
+
+    private final MemberService memberService;
 
     private static final String LOGIN_HTML = """
             <!DOCTYPE html>
@@ -108,6 +116,29 @@ public class LoginController {
             </html>
             """;
 
+    private static final String TOKEN_HTML = """
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8">
+                <title>로그인 성공</title>
+            </head>
+            <body>
+                <script>
+                    const token = "{{TOKEN}}";
+                    localStorage.setItem("authorized", JSON.stringify({
+                        "JWT TOKEN": {
+                            "name": "JWT TOKEN",
+                            "schema": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" },
+                            "value": token
+                        }
+                    }));
+                    window.location.href = "/swagger-ui/index.html";
+                </script>
+            </body>
+            </html>
+            """;
+
     @GetMapping(value = "/login", produces = MediaType.TEXT_HTML_VALUE)
     public ResponseEntity<String> loginPage(
             @RequestParam(required = false) String error
@@ -121,5 +152,23 @@ public class LoginController {
         return ResponseEntity.ok()
                 .contentType(MediaType.TEXT_HTML)
                 .body(html);
+    }
+
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<String> loginProcess(
+            @RequestParam String email,
+            @RequestParam String password
+    ) {
+        try {
+            MemberResDTO.Login result = memberService.login(new MemberReqDTO.Login(email, password));
+            String html = TOKEN_HTML.replace("{{TOKEN}}", result.accessToken());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_HTML)
+                    .body(html);
+        } catch (Exception e) {
+            return ResponseEntity.status(302)
+                    .header("Location", "/login?error")
+                    .build();
+        }
     }
 }
